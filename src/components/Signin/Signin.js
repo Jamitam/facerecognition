@@ -1,4 +1,6 @@
 import React from 'react';
+import './Signin.css';
+import { trackPromise } from 'react-promise-tracker';
 
 class Signin extends React.Component {
 	constructor (props) {
@@ -18,6 +20,7 @@ class Signin extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
+		trackPromise(
 		fetch('https://still-fortress-04144.herokuapp.com/signin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
@@ -25,7 +28,7 @@ class Signin extends React.Component {
 				email: this.state.signInEmail,
 				password: this.state.signInPassword
 			})
-		})
+		}))
 		.then(response => response.json())
 		.then(user => {
 			if (user.id) {
@@ -37,6 +40,7 @@ class Signin extends React.Component {
 
 	render() {
 		const { onRouteChange } = this.props;
+
 		return (
 			<article className="br3 ba b--black-10 mv4 w-100 w-50-n w-25-l mw6 shadow-5 center">
 				<main className="pa4 black-80">
@@ -66,10 +70,10 @@ class Signin extends React.Component {
 				    </fieldset>
 				    <div className="">
 				      <input 
-				      	onClick={this.onSubmitSignIn}
-				      	className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
-				      	type="submit" 
-				      	value="Sign in" 
+				      		onClick={this.onSubmitSignIn}
+				      		className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
+				      		type="submit" 
+				      		value="Sign in" 
 				      	/>
 				    </div>
 				    <div className="lh-copy mt3">
