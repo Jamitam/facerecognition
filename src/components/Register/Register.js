@@ -1,4 +1,5 @@
 import React from 'react';
+import { trackPromise } from 'react-promise-tracker';
 
 class Register extends React.Component {
 	constructor (props) {
@@ -23,6 +24,7 @@ class Register extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
+		trackPromise(
 		fetch('https://still-fortress-04144.herokuapp.com/register', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
@@ -31,7 +33,7 @@ class Register extends React.Component {
 				password: this.state.password,
 				name: this.state.name
 			})
-		})
+		}))
 		.then(response => response.json())
 		.then(user => {
 			if (user.id) {
