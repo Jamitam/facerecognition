@@ -19,6 +19,12 @@ class Signin extends React.Component {
 		this.setState({signInPassword: event.target.value})
 	}
 
+	onEnterPressed = (event) => {
+		if (event.keyCode === 13) {
+			this.onSubmitSignIn();
+		}
+	}
+
 	onSubmitSignIn = () => {
 		trackPromise(
 		fetch('https://still-fortress-04144.herokuapp.com/signin', {
@@ -39,7 +45,7 @@ class Signin extends React.Component {
 			}
 		})
 	}
-
+	
 	render() {
 		const { onRouteChange } = this.props;
 
@@ -56,7 +62,8 @@ class Signin extends React.Component {
 					        type="email" 
 					        name="email-address"  
 					        id="email-address"
-					        onChange={this.onEmailChange}
+							onChange={this.onEmailChange}
+							onKeyDown={this.onEnterPressed}
 				        />
 				      </div>
 				      <div className="mv3">
@@ -66,7 +73,8 @@ class Signin extends React.Component {
 					        type="password" 
 					        name="password"  
 					        id="password"
-					        onChange={this.onPasswordChange} 
+							onChange={this.onPasswordChange}
+							onKeyDown={this.onEnterPressed} 
 				        />
 				      </div>
 				    </fieldset>
@@ -86,7 +94,6 @@ class Signin extends React.Component {
 			</article>
 		);
 	}
-	
 }
 
 export default Signin;
