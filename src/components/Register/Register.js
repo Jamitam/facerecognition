@@ -23,6 +23,12 @@ class Register extends React.Component {
 		this.setState({password: event.target.value})
 	}
 
+	onEnterPressed = (event) => {
+		if (event.keyCode === 13) {
+			this.onSubmitSignIn();
+		}
+	}
+
 	onSubmitSignIn = () => {
 		trackPromise(
 		fetch('https://still-fortress-04144.herokuapp.com/register', {
@@ -77,7 +83,8 @@ class Register extends React.Component {
 				        type="password" 
 				        name="password"  
 				        id="password" 
-				        onChange={this.onPasswordChange}
+						onChange={this.onPasswordChange}
+						onKeyDown={this.onEnterPressed}
 			        />
 			      </div>
 			    </fieldset>
