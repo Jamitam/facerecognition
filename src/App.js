@@ -11,7 +11,6 @@ import './App.css';
 
 
 
-
 const particlesOptions = {
 	particles: {
 		number: {
